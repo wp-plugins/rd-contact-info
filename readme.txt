@@ -14,9 +14,9 @@ Provides a way to add dynamic contact information that includes more than just t
 == Installation ==
 
 1. Upload the `rd_contact_info` folder to the `/wp-content/plugins/` directory.
-2. Activate the plugin through the 'Plugins' menu.
-3. To add your contact infomation go to 'Edit Contact Information' the under 'Settings' menu.
-4. For complete instructions and examples of shortcodes and themes, click on `visit plugin page` under 'RD Contact Info' on the 'Plugins' page in wordpress.
+2. Activate the plugin through the `Plugins` menu.
+3. To add your contact infomation go to `Edit Contact Information` the under `Settings` menu.
+4. For complete instructions and examples of shortcodes and themes, click on `visit plugin page` under 'RD Contact Info' on the `Plugins` page in wordpress.
 
 == Frequently Asked Questions ==
 
