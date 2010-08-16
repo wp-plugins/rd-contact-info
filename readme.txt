@@ -20,7 +20,7 @@ Provides a way to add dynamic contact information that includes more than just t
 
 == Frequently Asked Questions ==
 
-= What if I want to add contact information not provided in the form, such as Skype or MSN or etc?
+= What if I want to add contact information not provided in the form, such as Skype or MSN or etc? =
 There is a work around for this. If there is an entry your not using enter the information in that field. 
 For example you could enter your Skype ID in the 'Moble' field then use this shortcode:
 [rd-contact-mobile label="Skype ID:"]
