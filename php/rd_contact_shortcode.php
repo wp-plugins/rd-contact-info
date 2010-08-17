@@ -80,15 +80,18 @@
 if ( !function_exists( 'rd_contact_name_shortcode' ) ):
 function rd_contact_name_shortcode( $attr, $content )
 {
-	  $atts = shortcode_atts( array( 'label' => '' ), $attr );
-	  $contact_info = '';
-	  if ( get_option( 'rdContactName' ) != '' )
-	  {
-		  $contact_info .= ( $atts['label'] == '' )? '' : '<strong>'.$atts['label'].' </strong>';
-		  $contact_info .= get_option( 'rdContactName' );
-	  }
+	$atts = shortcode_atts( array( 'label' => '' ), $attr );
+	$contact_info = '';
+	if ( get_option( 'rdContactOverride' ) == '1' || get_option( 'rdShowContactName' ) == '1')
+	{
+		  if ( get_option( 'rdContactName' ) != '' )
+		  {
+			  $contact_info .= ( $atts['label'] == '' )? '' : '<strong>'.$atts['label'].' </strong>';
+			  $contact_info .= get_option( 'rdContactName' ).'<br />';
+		  }
+	}  
 	  
-	  return $contact_info.'<br />';
+	  return $contact_info;
 }
 endif; // END FUNCTION rd_contact_name_shortcode
 
@@ -106,13 +109,16 @@ function rd_contact_phone_shortcode( $attr, $content )
 {
 	 $atts = shortcode_atts( array( 'label' => '' ), $attr );
 	  $contact_info = '';
-	  if (get_option( 'rdContactPhone' ) != '' )
-	  {
-		  $contact_info .= ( $atts['label'] == '' )? '' : '<strong>'.$atts['label'].' </strong>';
-		  $contact_info .= get_option( 'rdContactPhone' );
-	  }
+	if ( get_option( 'rdContactOverride' ) == '1' || get_option( 'rdShowContactName' ) == '1' )
+	{
+		  if (get_option( 'rdContactPhone' ) != '' )
+		  {
+			  $contact_info .= ( $atts['label'] == '' )? '' : '<strong>'.$atts['label'].' </strong>';
+			  $contact_info .= get_option( 'rdContactPhone' ).'<br />';
+		  }
+	}  
 	  
-	  return $contact_info.'<br />';
+	  return $contact_info;
 }
 endif; // END FUNCTION rd_contact_phone_shortcode
 
@@ -129,14 +135,17 @@ if ( !function_exists( 'rd_contact_mobile_shortcode' ) ):
 function rd_contact_mobile_shortcode( $attr, $content )
 {
 	$atts = shortcode_atts( array( 'label' => '' ), $attr );
-	  $contact_info = '';
-	  if (get_option( 'rdContactMobile' ) != '' )
-	  {
-		  $contact_info .= ( $atts['label'] == '' )? '' : '<strong>'.$atts['label'].' </strong>';
-		  $contact_info .= get_option( 'rdContactMobile' );
-	  }
+	$contact_info = '';
+	if ( get_option( 'rdContactOverride' ) == '1' || get_option( 'rdShowContactMobile' ) == '1' )
+	{
+		  if (get_option( 'rdContactMobile' ) != '' )
+		  {
+			  $contact_info .= ( $atts['label'] == '' )? '' : '<strong>'.$atts['label'].' </strong>';
+			  $contact_info .= get_option( 'rdContactMobile' ).'<br />';
+		  }
+	}  
 	  
-	  return $contact_info.'<br />';
+	  return $contact_info;
 }
 endif; // END FUNCTION rd_contact_mobile_shortcode
 
@@ -153,14 +162,17 @@ if ( !function_exists( 'rd_contact_fax_shortcode' ) ):
 function rd_contact_fax_shortcode( $attr, $content )
 {
 	$atts = shortcode_atts( array( 'label' => '' ), $attr );
-	  $contact_info = '';
-	  if ( get_option( 'rdContactFax' ) != '' )
-	  {
-		  $contact_info .= ( $atts['label'] == '' )? '' : '<strong>'.$atts['label'].' </strong>';
-		  $contact_info .= get_option( 'rdContactFax' );
-	  }
+	$contact_info = '';
+	if ( get_option( 'rdContactOverride' ) == '1' || get_option( 'rdShowContactFax' ) == '1' )
+	{
+		  if ( get_option( 'rdContactFax' ) != '' )
+		  {
+			  $contact_info .= ( $atts['label'] == '' )? '' : '<strong>'.$atts['label'].' </strong>';
+			  $contact_info .= get_option( 'rdContactFax' ).'<br />';
+		  }
+	}  
 	  
-	  return $contact_info.'<br />';
+	  return $contact_info;
 }
 endif; // END FUNCTION rd_contact_fax_shortcode
 
@@ -178,21 +190,24 @@ if ( !function_exists( 'rd_contact_email_shortcode' ) ):
 function rd_contact_email_shortcode($attr, $content)
 {
 	$atts = shortcode_atts( array( 'label' => '', 'link' => 'true' ), $attr );
-	  $contact_info = '';
+	$contact_info = '';
+	if ( get_option( 'rdContactOverride' ) == '1' || get_option( 'rdShowContactEmail' ) == '1' )
+	{
 	  if ( get_option( 'rdContactEmail' ) != '' )
 	  {
 		  $contact_info .= ( $atts['label'] == '' )? '' : '<strong>'.$atts['label'].' </strong>';
 		  if ($atts['link'] == 'true')
 		  {
-			  $contact_info .= '<a href="mailto:'.get_option( 'rdContactEmail' ).'">'.get_option( 'rdContactEmail' ).'</a>';
+			  $contact_info .= '<a href="mailto:'.get_option( 'rdContactEmail' ).'">'.get_option( 'rdContactEmail' ).'</a>'.'<br />';
 		  }
 		  else
 		  {
-		  	 $contact_info .= get_option( 'rdContactEmail' );
+		  	 $contact_info .= get_option( 'rdContactEmail' ).'<br />';
 		  }
 	  }
+	}  
 	  
-	  return $contact_info.'<br />';
+	  return $contact_info;
 }
 endif; // END FUNCTION rd_contact_email_shortcode
 
@@ -210,23 +225,26 @@ function rd_contact_address_shortcode( $attr, $content )
 {
 	$atts = shortcode_atts( array( 'label' => '' ), $attr);
 	$contact_info = '';
-	if (		get_option( 'rdContactStreet' ) != '' ||
-			get_option( 'rdContactCity' ) != '' ||
-			get_option( 'rdContactState' ) != '' ||
-			get_option( 'rdContactZip' ) != '' )
+	if ( get_option( 'rdContactOverride' ) == '1' || get_option( 'rdShowContactAddress' ) == '1' )
 	{
-		$contact_info .= ( $atts['label'] == '' )? '' : '<strong>'.$atts['label'].'</strong><br />';
-		$contact_info .= ( get_option( 'rdContactStreet' ) == '' )? '' : get_option( 'rdContactStreet' ).'<br />';
-		if ( get_option( 'rdContactCity' ) != '' && get_option( 'rdContactState' ) != '' )
+		if (		get_option( 'rdContactStreet' ) != '' ||
+				get_option( 'rdContactCity' ) != '' ||
+				get_option( 'rdContactState' ) != '' ||
+				get_option( 'rdContactZip' ) != '' )
 		{
-			$contact_info .= get_option( 'rdContactCity' ).', '.get_option( 'rdContactState' ).' ';
+			$contact_info .= ( $atts['label'] == '' )? '' : '<strong>'.$atts['label'].'</strong><br />';
+			$contact_info .= ( get_option( 'rdContactStreet' ) == '' )? '' : get_option( 'rdContactStreet' ).'<br />';
+			if ( get_option( 'rdContactCity' ) != '' && get_option( 'rdContactState' ) != '' )
+			{
+				$contact_info .= get_option( 'rdContactCity' ).', '.get_option( 'rdContactState' ).' ';
+			}
+			else
+			{
+				$contact_info .= ( get_option( 'rdContactCity' ) == '' )? '' : get_option( 'rdContactCity' ).' ';
+				$contact_info .= ( get_option( 'rdContactState' ) == '' )? '' : get_option( 'rdContactState' ).' ';
+			}
+			$contact_info .= ( get_option( 'rdContactZip' ) == '' )? '' : get_option( 'rdContactZip' );
 		}
-		else
-		{
-			$contact_info .= ( get_option( 'rdContactCity' ) == '' )? '' : get_option( 'rdContactCity' ).' ';
-			$contact_info .= ( get_option( 'rdContactState' ) == '' )? '' : get_option( 'rdContactState' ).' ';
-		}
-		$contact_info .= ( get_option( 'rdContactZip' ) == '' )? '' : get_option( 'rdContactZip' );
 	}
 	
 	return $contact_info.'<br />';

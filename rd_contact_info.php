@@ -3,7 +3,7 @@
 Plugin Name: RD Contact Info
 Plugin URI: http://www.reitzdesigns.com/2010/06/rd-contact-info-plugin/
 Description: Provides an easy method for adding dynamic contact information to a page or post. Includes shortcodes, and functions that can be incorporated into a theme.
-Version: 1.1
+Version: 1.2
 Author: Paul Reitz
 Author URI: http://reitzdesigns.com
 */
@@ -62,6 +62,8 @@ add_shortcode( 'rd-contact-address', 	'rd_contact_address_shortcode' );
 if ( !function_exists( 'rd_contact_clean' ) ):
 function rd_contact_clean()
 {
+	delete_option( 'rdContactOverride' );
+	
 	delete_option( 'rdContactName' );
 	delete_option( 'rdContactPhone' );
 	delete_option( 'rdContactMobile' );

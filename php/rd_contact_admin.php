@@ -7,6 +7,10 @@ if ($_POST['rd_contact_hidden'] == 'Y') // Form was previously submitted.
 		if ( function_exists( 'check_admin_referer' ) )
 			check_admin_referer( 'rdcontactinfo-editcontactinfo' );
 			
+		$rdContactOverride = ( isset( $_POST['rdContactOverride'] ) )? '1' : '0';
+		update_option( 'rdContactOverride', $rdContactOverride );
+		$rdContactOverride = ( isset( $_POST['rdContactOverride'] ) )? 'checked' : '';
+		
 		$rdContactName = $_POST['rdContactName'];
 		update_option('rdContactName', $rdContactName);
 		
@@ -63,13 +67,15 @@ if ($_POST['rd_contact_hidden'] == 'Y') // Form was previously submitted.
 	}
 	else // First time the page is displayed.
 	{
-		$rdContactName 		= get_option('rdContactName');
-		$rdContactPhone		= get_option('rdContactPhone');
-		$rdContactMobile		= get_option('rdContactMobile');
+		$rdContactOverride	= ( get_option( 'rdContactOverride' ) == '1')? 'checked' : '';
+		
+		$rdContactName 	= get_option('rdContactName');
+		$rdContactPhone	= get_option('rdContactPhone');
+		$rdContactMobile	= get_option('rdContactMobile');
 		$rdContactFax			= get_option('rdContactFax');
-		$rdContactEmail			= get_option('rdContactEmail');
-		$rdContactStreet		= get_option('rdContactStreet');
-		$rdContactCity			= get_option('rdContactCity');
+		$rdContactEmail		= get_option('rdContactEmail');
+		$rdContactStreet	= get_option('rdContactStreet');
+		$rdContactCity		= get_option('rdContactCity');
 		$rdContactState		= get_option('rdContactState');
 		$rdContactZip			= get_option('rdContactZip');
 		
@@ -77,8 +83,8 @@ if ($_POST['rd_contact_hidden'] == 'Y') // Form was previously submitted.
 		$rdShowContactPhone		= (get_option('rdShowContactPhone') == '1')? 'checked' : '';
 		$rdShowContactMobile		= (get_option('rdShowContactMobile') == '1')? 'checked' : '';
 		$rdShowContactFax			= (get_option('rdShowContactFax') == '1')? 'checked' : '';
-		$rdShowContactEmail		= (get_option('rdShowContactEmail') == '1')? 'checked' : '';
-		$rdShowContactAddress	= (get_option('rdShowContactAddress') == '1')? 'checked' : '';
+		$rdShowContactEmail			= (get_option('rdShowContactEmail') == '1')? 'checked' : '';
+		$rdShowContactAddress		= (get_option('rdShowContactAddress') == '1')? 'checked' : '';
 	}
 ?>
 
@@ -90,9 +96,22 @@ if ($_POST['rd_contact_hidden'] == 'Y') // Form was previously submitted.
 				wp_nonce_field( 'rdcontactinfo-editcontactinfo' );
 		?>
     	<input type="hidden" name="rd_contact_hidden" value="Y" />
-        <?php echo '<h4>'.__('Contact Information').'</h4>'; ?>
         
-        <table>
+        <?php echo '<h4>'.__('Shortcode Settings').'</h4>'; ?>
+		<table><!-- Allow Override -->
+			<tr>
+				<td>
+					<?php echo _e( 'Allow shortcodes to override "Show" option' ); ?>
+				</td>
+				<td>
+					<input type="checkbox" name="rdContactOverride" <?php echo $rdContactOverride; ?> />
+				</td>
+			</tr>
+		</table>
+		<hr />
+		
+        <?php echo '<h4>'.__('Contact Information').'</h4>'; ?>
+        <table><!-- Contact Information Entries -->
         	<tr>
             	<td>
                 	<?php echo _e('Contact Name: '); ?>
@@ -152,7 +171,7 @@ if ($_POST['rd_contact_hidden'] == 'Y') // Form was previously submitted.
         <hr />
         <?php echo '<h4>'.__('Street Address').'</h4>' ?>
         <input type="checkbox" name="rdShowContactAddress" <?php echo $rdShowContactAddress; ?>/><?php echo _e('Show Address'); ?>
-        <table>
+        <table><!-- Address Infromation fields -->
         	<tr>
             	<td>
                 	<?php echo _e('Street Address: '); ?>
