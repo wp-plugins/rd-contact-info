@@ -3,7 +3,7 @@ Contributors: Paul Reitz
 Tags: contact, information
 Requires at least: 2.8.0
 Tested up to: 3.0.1
-Stable tag: 1.1
+Stable tag: 1.2
 
 Provides a simple way to add dynamic contact information to posts and pages. This provides a way to add information beyond just the admin email.
 
@@ -34,3 +34,7 @@ For example you could enter your Skype ID in the 'Moble' field then use this sho
 = 1.1 =
 * Added shortcodes
 * Major code clean up and organization.
+
+= 1.2 =
+
+* Added the ability to choose whether or not shortcodes override the show options.
