@@ -3,7 +3,7 @@ Contributors: Paul Reitz
 Tags: contact, information
 Requires at least: 2.8.0
 Tested up to: 3.0.1
-Stable tag: trunk
+Stable tag: 1.1
 
 Provides a simple way to add dynamic contact information to posts and pages. This provides a way to add information beyond just the admin email.
 
