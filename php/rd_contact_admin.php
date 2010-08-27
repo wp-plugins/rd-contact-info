@@ -212,10 +212,4 @@ if ($_POST['rd_contact_hidden'] == 'Y') // Form was previously submitted.
 </div>
 <br /><br />
 <hr />
-If you find this plugin useful, please consider making a donation to its continued development. Thank you.<br />
-<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
-<input type="hidden" name="cmd" value="_s-xclick">
-<input type="hidden" name="hosted_button_id" value="PM99FQRRFCVXU">
-<input type="image" src="https://www.paypal.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-<img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
-</form>
+The free version of this plugin is no longer being maintained. Download version 2.0 <a href="http://wpplugins.com/plugin/194/rd-contact-info">here</a>
